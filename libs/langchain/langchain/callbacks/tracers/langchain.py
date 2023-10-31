@@ -91,9 +91,7 @@ class LangChainTracer(BaseTracer):
         self.example_id = (
             UUID(example_id) if isinstance(example_id, str) else example_id
         )
-        self.project_name = project_name or os.getenv(
-            "LANGCHAIN_PROJECT", os.getenv("LANGCHAIN_SESSION", "default")
-        )
+        self.project_name = project_name
         self.client = client or get_client()
         self._futures: weakref.WeakSet[Future] = weakref.WeakSet()
         self.tags = tags or []
